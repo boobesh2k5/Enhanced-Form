@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📝 Submit Your Feedback</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: linear-gradient(to right, #d7e1ec, #f0f4f8); padding: 20px;">
+
+  <div style="max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s;">
+    <h2 style="text-align: center; color: #2c3e50;">📝 Feedback Form</h2>
+    <p style="text-align: center; color: #666;">We’d love to hear from you! 💬</p>
+
+    <form action="/submit" method="POST" onsubmit="return validateForm()">
+      <label for="name">🙍 Full Name:</label><br />
+      <input type="text" id="name" name="name" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc;" />
+
+      <label for="email" style="margin-top: 15px; display:block;">📧 Email:</label>
+      <input type="email" id="email" name="email" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc;" />
+
+      <label for="age" style="margin-top: 15px; display:block;">🎂 Age:</label>
+      <input type="number" id="age" name="age" min="10" max="100" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc;" />
+
+      <label for="gender" style="margin-top: 15px; display:block;">⚧️ Gender:</label>
+      <select id="gender" name="gender" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc;">
+        <option value="">-- Choose --</option>
+        <option>👨 Male</option>
+        <option>👩 Female</option>
+        <option>🌈 Other</option>
+      </select>
+
+      <label for="message" style="margin-top: 15px; display:block;">🗣️ Message:</label>
+      <textarea id="message" name="message" rows="4" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc;"></textarea>
+
+      <button type="submit" style="margin-top: 20px; width: 100%; padding: 14px; border: none; border-radius: 8px; background: linear-gradient(to right, #00c6ff, #0072ff); color: white; font-size: 16px; cursor: pointer;">🚀 Submit Feedback</button>
+    </form>
+  </div>
+
+  <p style="text-align: center; font-size: 14px; color: #555; margin-top: 20px;">
+    &copy; <span id="year"></span> Created by <strong>Boobesh</strong> at 
+    <a href="https://www.cognifyz.com" target="_blank" style="color: #007BFF; text-decoration: none;">Cognifyz</a>. All rights reserved.
+  </p>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const age = parseInt(document.getElementById("age").value);
+      const gender = document.getElementById("gender").value;
+      const message = document.getElementById("message").value.trim();
+
+      if (name.length < 3) { alert("🙍 Name must be at least 3 characters."); return false; }
+      if (!email.includes("@") || email.length < 5) { alert("📧 Please enter a valid email."); return false; }
+      if (isNaN(age) || age < 10 || age > 100) { alert("🎂 Age must be between 10 and 100."); return false; }
+      if (gender === "") { alert("⚧️ Please select your gender."); return false; }
+      if (message.length < 10) { alert("🗣️ Message must be at least 10 characters."); return false; }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
